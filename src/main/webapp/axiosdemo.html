@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id="demo">adfasf</div>
+    <div id="demo2">adfasf</div>
+    <button id="demo3" value="测试3" onclick="axiosfun1()">测试3</button>
+    <button id="demo4" value="测试4" >测试4</button>
+
+</body>
+<script src="js/axios-0.18.0.js"></script>
+<script>
+    //**第一种书写方式阅读性好
+    //1.get
+    axios({
+        method:"get",
+        url:"http://localhost:8080/brand-demo/ajax/axoisServlet?username=zhangsan"
+    }).then(function (resp){
+        document.getElementById("demo").innerHTML = "<h2>axios get Test</h2>"+resp.data;
+        // alert("<h2>axios get Test</h2>"+resp.data);
+    })
+    //2.post
+    axios({
+        method:"post",
+        url:"http://localhost:8080/brand-demo/ajax/axoisServlet",
+        data:"username=zhangsan"
+    }).then(function (resp){
+        document.getElementById("demo2").innerHTML = "<h2>axios post Test</h2>"+resp.data;
+        // alert("<h2>axios post Test</h2>"+resp.data);
+    })
+    //**第二种方式书写简单
+    function axiosfun1(){
+        axios.get("http://localhost:8080/brand-demo/ajax/axoisServlet?username=zhangsan").then(function (resp){
+            alert("get::"+resp.data);
+        });
+    }
+    document.getElementById("demo4").onclick = function(){
+        axios.post("http://localhost:8080/brand-demo/ajax/axoisServlet","username=zhangsan").then(function (resp){
+            alert("post::"+resp.data);
+        });
+    }
+</script>
+
+</html>
